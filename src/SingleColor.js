@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaClipboardCheck } from "react-icons/fa";
 // import rgbToHex from "./utils";
 
-const SingleColor = ({ rgb, weight, index, hexColor }) => {
+const SingleColor = ({ rgb, weight, index, hexColor, howMany }) => {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const SingleColor = ({ rgb, weight, index, hexColor }) => {
     <>
       <article
         style={{ backgroundColor: `rgb(${bcg})` }}
-        className={`color ${index > 10 && "color-light"}`}
+        className={`color ${index > 100 / howMany && "color-light"}`}
         onClick={() => {
           setAlert(true);
           window.navigator.clipboard.writeText(hexValue);

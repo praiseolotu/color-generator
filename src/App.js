@@ -21,7 +21,9 @@ function App() {
       let colors = new Values(color).all(howMuch);
       console.log(colors);
       setList(colors);
+      setError(false);
     } catch (error) {
+      console.log(error);
       setError(true);
     }
   };
@@ -29,16 +31,20 @@ function App() {
   return (
     <>
       <section className="container">
-        <h3>colors: </h3>
-        <form onSubmit={handleSubmit}>
+        <h3 className="header">color: </h3>
+        <form onSubmit={handleSubmit} className="form-style">
           <input
             type="text"
             value={color}
             onChange={(e) => setColor(e.target.value)}
             placeholder="#7a7a7a"
-            className={error ? "error" : null}
+            className={`"header-low ${error ? "error" : null}"`}
           />
-          <select value={howMany} onChange={(e) => setHowMany(e.target.value)}>
+          <select
+            value={howMany}
+            onChange={(e) => setHowMany(e.target.value)}
+            className="lower"
+          >
             <option disabled>Select Number: </option>
             <option value="50">50</option>
             <option value="20">20</option>
@@ -59,6 +65,7 @@ function App() {
               {...each}
               index={index}
               hexColor={each.hex}
+              howMany={howMany}
             />
           );
         })}
